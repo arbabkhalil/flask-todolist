@@ -24,5 +24,7 @@ phases:
 artifacts:
   files: 
       - 'docker-compose.yml'
+      - 'codeDeploy/*'
+      - 'appspec.yml'
   base-directory: '.'
   discard-paths: yes
