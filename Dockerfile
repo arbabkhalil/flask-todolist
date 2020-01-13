@@ -11,7 +11,9 @@ RUN echo "**** install Python ****" && \
     pip3 install --no-cache --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
 
-ADD . /code
-WORKDIR /code
 RUN pip install gunicorn
-RUN pip install -r requirements.txt
+COPY --from=build ./requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+
+COPY --from=build . /code
+WORKDIR /code
