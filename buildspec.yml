@@ -18,6 +18,8 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
+      - echo Testing the build
+      - docker run --rm $IMAGE_REPO_NAME:$IMAGE_TAG pip install -r test-requirements.txt && flask test
       - echo Pushing the Docker image...
       - docker push $IMAGE_REPO_NAME:$IMAGE_TAG
 
