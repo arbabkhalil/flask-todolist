@@ -4,20 +4,13 @@ files:
   - source: /
     destination: /home/ubuntu/flask-todo
     overwrite: true
-permissions:
-  - object: /home/ubuntu/flask-todo/codedeploy
-    pattern: "*.sh"
-    owner: root
-    group: root
-    mode: 755
-    type:
-      - file
+
 hooks:
   BeforeInstall:
-    - location: codedeploy/before_install.sh
+    - location: before_install.sh
       timeout: 180
       runas: root
   AfterInstall:
-    - location: codedeploy/after_install.sh
+    - location: after_install.sh
       timeout: 180
       runas: root
