@@ -4,3 +4,4 @@
 pwd
 cd /home/ubuntu/flask-todo
 docker-compose down -v --rmi 'all'
+rm -rf ./*
