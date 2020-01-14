@@ -19,7 +19,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Testing the build
-      - docker run --rm $IMAGE_REPO_NAME:$IMAGE_TAG pip install -r test-requirements.txt && flask test
+      - docker run --rm $IMAGE_REPO_NAME:$IMAGE_TAG sh -c "pip install -r test-requirements.txt && export FLASK_APP=todolist.py && flask test"
       - echo Pushing the Docker image...
       - docker push $IMAGE_REPO_NAME:$IMAGE_TAG
 
