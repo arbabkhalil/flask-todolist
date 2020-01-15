@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Stop Docker and remove images
-pwd
+sudo systemctl stop myApp@todolist
+
 cd /home/ubuntu/flask-todo
-docker-compose down -v --rmi 'all'
 rm -rf ./*
 rm -f .env
