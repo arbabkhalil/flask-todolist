@@ -5,16 +5,18 @@ services:
     image: arbabkhalil/test_jenkins
     # restart: always
     env_file: .env
-    command: gunicorn todolist:app -w 2 -b :8000
+    command: sh -c "flask db upgrade && gunicorn todolist:app -w 2 -b :8000"
 
     ports:
       - "8000:8000"
 
-  migration:
-    container_name: migration
-    build: .
-    image: arbabkhalil/test_jenkins
-    env_file: .env
-    command: flask db upgrade
-    depends_on:
-      - todolist
+  redis:
+    image: redis
+    container_name: cache
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
